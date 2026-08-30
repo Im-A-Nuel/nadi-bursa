@@ -63,7 +63,7 @@ export function detectAnomalies(tickers: { symbol: string; sector: string; chang
         symbol: t.symbol,
         type: 'volume_spike',
         severity: volDeviation > 4 ? 'high' : 'medium',
-        message: `${t.symbol} volume ${((t.volume / avgVol) * 100).toFixed(0)}% of sector avg — unusual activity`,
+        message: `${t.symbol} volume ${((t.volume / avgVol) * 100).toFixed(0)}% of sector avg - unusual activity`,
         deviation: volDeviation,
       });
     }
@@ -72,7 +72,7 @@ export function detectAnomalies(tickers: { symbol: string; sector: string; chang
         symbol: t.symbol,
         type: 'volume_drop',
         severity: 'low',
-        message: `${t.symbol} volume at ${((t.volume / avgVol) * 100).toFixed(0)}% of sector avg — thin trading`,
+        message: `${t.symbol} volume at ${((t.volume / avgVol) * 100).toFixed(0)}% of sector avg - thin trading`,
         deviation: volDeviation,
       });
     }

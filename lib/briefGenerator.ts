@@ -41,10 +41,10 @@ export function generateBrief(
 
   const alerts: string[] = [];
   highlights.forEach(h => {
-    if (h.signal.combinedSignal === 'strong_buy') alerts.push(`${h.symbol}: Strong buy signal — foreign + broker alignment`);
-    if (h.signal.combinedSignal === 'strong_sell') alerts.push(`${h.symbol}: Strong sell signal — watch for exit`);
-    if (h.scores.dividendHealth >= 80) alerts.push(`${h.symbol}: Dividend Health ${h.scores.dividendHealth}/100 — high yield sustainable`);
-    if (h.scores.dividendHealth <= 20 && h.scores.dividendHealth > 0) alerts.push(`${h.symbol}: Dividend trap risk — Health ${h.scores.dividendHealth}/100`);
+    if (h.signal.combinedSignal === 'strong_buy') alerts.push(`${h.symbol}: Strong buy signal - foreign + broker alignment`);
+    if (h.signal.combinedSignal === 'strong_sell') alerts.push(`${h.symbol}: Strong sell signal - watch for exit`);
+    if (h.scores.dividendHealth >= 80) alerts.push(`${h.symbol}: Dividend Health ${h.scores.dividendHealth}/100 - high yield sustainable`);
+    if (h.scores.dividendHealth <= 20 && h.scores.dividendHealth > 0) alerts.push(`${h.symbol}: Dividend trap risk - Health ${h.scores.dividendHealth}/100`);
   });
 
   const topMovers = [...tickers]
@@ -64,7 +64,7 @@ export function generateBrief(
 }
 
 export function formatBriefText(brief: DailyBrief): string {
-  let text = `SINYAL HARI INI — ${brief.date} ${brief.timestamp}\n`;
+  let text = `SINYAL HARI INI - ${brief.date} ${brief.timestamp}\n`;
   text += `IHSG: ${brief.idxSummary.close} (${brief.idxSummary.changePercent >= 0 ? '+' : ''}${brief.idxSummary.changePercent}%)\n\n`;
   text += `TOP MOVERS:\n`;
   brief.topMovers.forEach(m => { text += `  ${m.symbol} ${m.changePercent >= 0 ? '+' : ''}${m.changePercent}%\n`; });
@@ -74,7 +74,7 @@ export function formatBriefText(brief: DailyBrief): string {
     text += `\nYOUR WATCHLIST:\n`;
     brief.watchlistHighlights.forEach(h => {
       const band = getHealthBand(h.scores.overall);
-      text += `  ${h.symbol}: ${band.label} (${h.scores.overall}/100) — ${getSignalDisplay(h.signal.combinedSignal).label}\n`;
+      text += `  ${h.symbol}: ${band.label} (${h.scores.overall}/100) - ${getSignalDisplay(h.signal.combinedSignal).label}\n`;
     });
   }
   text += `\nDisclaimer: Not financial advice. Information tool only.`;

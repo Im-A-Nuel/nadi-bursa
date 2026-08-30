@@ -72,7 +72,7 @@ export function computeDerivedSignal(symbol: string, ticker: ScreenerItem, forei
 
   const confidence = Math.min(95, Math.max(30, 50 + Math.abs(combinedScore - 50)));
 
-  const summary = `${SIGNAL_LABELS[combinedSignal]} on ${symbol} — foreign flow ${SIGNAL_LABELS[foreignResult.signal].toLowerCase()}, broker ${SIGNAL_LABELS[brokerResult.signal].toLowerCase()}.`;
+  const summary = `${SIGNAL_LABELS[combinedSignal]} on ${symbol} - foreign flow ${SIGNAL_LABELS[foreignResult.signal].toLowerCase()}, broker ${SIGNAL_LABELS[brokerResult.signal].toLowerCase()}.`;
 
   return { symbol, foreignSignal: foreignResult.signal, brokerSignal: brokerResult.signal, combinedSignal, confidence, foreignScore: foreignResult.score, brokerScore: brokerResult.score, summary };
 }

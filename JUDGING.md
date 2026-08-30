@@ -1,4 +1,4 @@
-# JUDGING.md — Sectors Hackathon 2026
+# JUDGING.md - Sectors Hackathon 2026
 
 ## Track
 Primary: Market Intelligence (40% usability + 30% storytelling + 30% technical depth). Evidence for Automation via Scheduler Log.
@@ -19,4 +19,4 @@ Primary: Market Intelligence (40% usability + 30% storytelling + 30% technical d
 screener, daily, close, company/report, broker-summary-by-symbol, foreign-flow-by-symbol, top-changes, idx-total, filings
 
 ## Automation evidence
-Page `/scheduler` shows simulated GitHub Actions cron `30 1 * * *` (08:30 WIB) logs last 5 runs — satisfies Track 2 without claiming real cron.
+Page `/scheduler` shows simulated GitHub Actions cron `30 1 * * *` (08:30 WIB) logs last 5 runs - satisfies Track 2 without claiming real cron.

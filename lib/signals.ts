@@ -47,11 +47,11 @@ const SIGNAL_LABELS: Record<SignalStrength, string> = {
 };
 
 const SIGNAL_DISPLAY: Record<SignalStrength, { emoji: string; bg: string; text: string }> = {
-  strong_buy: { emoji: '\u2B06\uFE0F', bg: '#065F46', text: '#10B981' },
-  buy: { emoji: '\u2197\uFE0F', bg: '#064E3B', text: '#34D399' },
+  strong_buy: { emoji: '\u2B06\uFE0F', bg: '#065F46', text: '#00D68F' },
+  buy: { emoji: '\u2197\uFE0F', bg: '#064E3B', text: '#6EE7C3' },
   neutral: { emoji: '\u27A1\uFE0F', bg: '#374151', text: '#9CA3AF' },
-  sell: { emoji: '\u2198\uFE0F', bg: '#7C2D12', text: '#F97316' },
-  strong_sell: { emoji: '\u2B07\uFE0F', bg: '#991B1B', text: '#EF4444' },
+  sell: { emoji: '\u2198\uFE0F', bg: '#7C2D12', text: '#FF8A96' },
+  strong_sell: { emoji: '\u2B07\uFE0F', bg: '#991B1B', text: '#FF4D5E' },
 };
 
 export function getSignalDisplay(signal: SignalStrength) {

@@ -33,7 +33,7 @@ export default function SchedulerPage() {
     <div className="animate-slide-up space-y-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">{t('Scheduler Log', 'Log Penjadwal')}</h1>
+          <h1 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-white">{t('Scheduler Log', 'Log Penjadwal')}</h1>
           <p className="mt-1 text-sm text-slate-400">{t('Automation evidence, simulated cron runs', 'Bukti otomasi, simulasi cron berjalan')}</p>
         </div>
         <MockDataBadge forceShow />
@@ -60,7 +60,7 @@ export default function SchedulerPage() {
 
       <div className="card">
         <h2 className="text-sm font-semibold text-white mb-3">{t('Cron Schedule', 'Jadwal Cron')}</h2>
-        <div className="rounded-xl border border-white/5 bg-[#0A0F1F] p-4 font-mono text-xs leading-relaxed">
+        <div className="rounded-xl border border-white/5 bg-[#070A12] p-4 font-mono text-xs leading-relaxed">
           <div className="text-slate-500"># .github/workflows/daily-brief.yml</div>
           <div className="mt-2"><span className="text-cyan-400">schedule:</span></div>
           <div className="ml-3"><span className="text-cyan-400">- cron:</span> <span className="text-emerald-400">'30 0 * * 1-5'</span> <span className="text-slate-500"># 08:30 WIB Mon-Fri</span></div>

@@ -9,6 +9,7 @@ import { ScoreRing } from '@/components/common/ScoreRing';
 import { SignalBadge } from '@/components/common/SignalBadge';
 import { WatchlistButton } from '@/components/common/WatchlistButton';
 import { MockDataBadge } from '@/components/common/MockDataBadge';
+import { TickerLogo } from '@/components/common/TickerLogo';
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, AreaChart, Area } from 'recharts';
 import { useLang } from '@/components/layout/LanguageProvider';
 
@@ -18,18 +19,31 @@ export default function TickerPage() {
   const [ticker, setTicker] = useState<ScreenerItem | null>(null);
   const [foreign, setForeign] = useState<ForeignFlow | null>(null);
   const [broker, setBroker] = useState<BrokerSummary | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<'network' | 'not-found' | null>(null);
   const { t } = useLang();
 
   useEffect(() => {
     if (!symbol) return;
-    Promise.all([getTickerData(symbol), getForeignFlow(symbol), getBrokerSummary(symbol)]).then(([tk, fl, br]) => {
-      setTicker(tk);
-      setForeign(fl);
-      setBroker(br);
-    });
+    setLoading(true);
+    setError(null);
+    Promise.all([getTickerData(symbol), getForeignFlow(symbol), getBrokerSummary(symbol)])
+      .then(([tk, fl, br]) => {
+        if (!tk) {
+          setError('not-found');
+          return;
+        }
+        setTicker(tk);
+        setForeign(fl);
+        setBroker(br);
+      })
+      .catch(() => setError('network'))
+      .finally(() => setLoading(false));
   }, [symbol]);
 
-  if (!ticker) return <div className="card text-center py-10 text-sm text-slate-400">{t('Loading...', 'Memuat...')}</div>;
+  if (loading) return <div className="desk p-8 text-center"><span className="led led-live animate-soft-pulse" /><p className="mono mt-3 text-xs text-[var(--muted)]">{t('Loading ticker evidence...', 'Memuat data ticker...')}</p></div>;
+  if (error === 'not-found') return <div className="desk p-8 text-center"><span className="led led-warn" /><p className="mt-3 text-sm font-medium text-white">{symbol} {t('was not found in the demo universe.', 'tidak ditemukan di universe demo.')}</p><Link href="/screener" className="btn-line mt-4">{t('Back to screener', 'Kembali ke saringan')}</Link></div>;
+  if (error || !ticker) return <div className="desk p-8 text-center"><span className="led led-fail" /><p className="mt-3 text-sm text-white">{t('Ticker data failed to load.', 'Data ticker gagal dimuat.')}</p><button onClick={() => window.location.reload()} className="btn-line mt-4">{t('Try again', 'Coba lagi')}</button></div>;
 
   const scores = computeAllScores(ticker);
   const trend = computeScoreTrend(ticker);
@@ -39,13 +53,14 @@ export default function TickerPage() {
     <div className="animate-slide-up space-y-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="flex items-center gap-3">
-          <Link href="/screener" className="inline-flex items-center gap-1 text-sm text-slate-400 hover:text-white transition-colors">
+          <Link href="/screener" className="inline-flex min-h-11 items-center gap-1 text-sm text-slate-400 hover:text-white transition-colors">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8"><path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" /></svg>
             {t('Back', 'Kembali')}
           </Link>
+          <TickerLogo symbol={ticker.symbol} name={ticker.name} sector={ticker.sector} size={48} />
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">{ticker.symbol}</h1>
+              <h1 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-white">{ticker.symbol}</h1>
               <SignalBadge signal={signal.combinedSignal} />
               <MockDataBadge />
             </div>
@@ -63,7 +78,7 @@ export default function TickerPage() {
           { label: 'DIV%', value: ticker.dividendYield > 0 ? `${ticker.dividendYield.toFixed(1)}%` : '-', sub: 'Dividend yield', tone: 'text-cyan-400' },
         ].map((c) => (
           <div key={c.label} className="card text-center">
-            <div className="kicker">{c.label}</div>
+            <div className="field-label">{c.label}</div>
             <div className={`mt-1 text-xl font-bold tabular-nums ${c.tone}`}>{c.value}</div>
             <div className="text-xs text-slate-500 mt-1">{c.sub}</div>
           </div>
@@ -72,21 +87,24 @@ export default function TickerPage() {
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         <div className="card lg:col-span-2">
-          <h2 className="text-sm font-semibold text-white mb-3">{t('5 Year Score Trend', 'Tren Skor 5 Tahun')}</h2>
+          <div className="flex items-center justify-between mb-3">
+            <h2 className="text-sm font-semibold text-white">{t('Score Trend', 'Tren Skor')}</h2>
+            <span className="mono text-[10px] text-[var(--faint)]">{t('Illustrative, not historical', 'Ilustrasi, bukan historis')}</span>
+          </div>
           <ResponsiveContainer width="100%" height={200}>
             <LineChart data={trend}>
-              <XAxis dataKey="year" tick={{ fontSize: 11, fill: '#64748B' }} axisLine={false} tickLine={false} />
-              <YAxis domain={[0, 100]} tick={{ fontSize: 11, fill: '#64748B' }} axisLine={false} tickLine={false} />
-              <Tooltip contentStyle={{ background: '#0E1223', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, fontSize: 12, color: '#F8FAFC' }} />
-              <Line type="monotone" dataKey="dividendHealth" stroke="#C6A664" strokeWidth={2} dot={false} />
-              <Line type="monotone" dataKey="valueQuality" stroke="#06B6D4" strokeWidth={2} dot={false} />
-              <Line type="monotone" dataKey="liquidity" stroke="#8B5CF6" strokeWidth={2} dot={false} />
+              <XAxis dataKey="year" tick={{ fontSize: 11, fill: '#7B879E' }} axisLine={false} tickLine={false} />
+              <YAxis domain={[0, 100]} tick={{ fontSize: 11, fill: '#7B879E' }} axisLine={false} tickLine={false} />
+              <Tooltip contentStyle={{ background: '#0A0E18', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, fontSize: 12, color: '#F8FAFC' }} />
+              <Line type="monotone" dataKey="dividendHealth" stroke="#E7B44A" strokeWidth={2} dot={false} />
+              <Line type="monotone" dataKey="valueQuality" stroke="#22D3EE" strokeWidth={2} dot={false} />
+              <Line type="monotone" dataKey="liquidity" stroke="#8FA3B8" strokeWidth={2} dot={false} />
             </LineChart>
           </ResponsiveContainer>
           <div className="mt-3 flex flex-wrap gap-4 justify-center text-xs">
-            <span className="inline-flex items-center gap-1.5 text-slate-400"><span className="w-3 h-0.5 rounded" style={{ background: '#C6A664' }} /> Dividend</span>
-            <span className="inline-flex items-center gap-1.5 text-slate-400"><span className="w-3 h-0.5 rounded" style={{ background: '#06B6D4' }} /> Value</span>
-            <span className="inline-flex items-center gap-1.5 text-slate-400"><span className="w-3 h-0.5 rounded" style={{ background: '#8B5CF6' }} /> Liquidity</span>
+            <span className="inline-flex items-center gap-1.5 text-slate-400"><span className="w-3 h-0.5 rounded" style={{ background: '#E7B44A' }} /> Dividend</span>
+            <span className="inline-flex items-center gap-1.5 text-slate-400"><span className="w-3 h-0.5 rounded" style={{ background: '#22D3EE' }} /> Value</span>
+            <span className="inline-flex items-center gap-1.5 text-slate-400"><span className="w-3 h-0.5 rounded" style={{ background: '#8FA3B8' }} /> Liquidity</span>
           </div>
         </div>
 
@@ -126,10 +144,10 @@ export default function TickerPage() {
               </div>
               <ResponsiveContainer width="100%" height={150}>
                 <AreaChart data={foreign.history}>
-                  <XAxis dataKey="date" tick={{ fontSize: 10, fill: '#64748B' }} axisLine={false} tickLine={false} />
-                  <YAxis tick={{ fontSize: 10, fill: '#64748B' }} axisLine={false} tickLine={false} tickFormatter={(v) => `${(v / 1e9).toFixed(0)}B`} />
-                  <Tooltip contentStyle={{ background: '#0E1223', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, fontSize: 11 }} formatter={(v: number) => `${(v / 1e9).toFixed(1)}B`} />
-                  <Area type="monotone" dataKey="net" stroke="#06B6D4" fill="#06B6D4" fillOpacity={0.14} strokeWidth={1.8} />
+                  <XAxis dataKey="date" tick={{ fontSize: 10, fill: '#7B879E' }} axisLine={false} tickLine={false} />
+                  <YAxis tick={{ fontSize: 10, fill: '#7B879E' }} axisLine={false} tickLine={false} tickFormatter={(v) => `${(v / 1e9).toFixed(0)}B`} />
+                  <Tooltip contentStyle={{ background: '#0A0E18', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 12, fontSize: 11 }} formatter={(v: number) => `${(v / 1e9).toFixed(1)}B`} />
+                  <Area type="monotone" dataKey="net" stroke="#22D3EE" fill="#22D3EE" fillOpacity={0.14} strokeWidth={1.8} />
                 </AreaChart>
               </ResponsiveContainer>
             </>

@@ -10,6 +10,7 @@ export const ENDPOINTS = {
   foreignFlow: '/foreign-flow-by-symbol',
   topChanges: '/top-changes',
   idxTotal: '/idx-total',
+  indexDaily: '/index-daily/ihsg/',
   filings: '/filings',
 } as const;
 

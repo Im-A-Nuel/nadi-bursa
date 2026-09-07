@@ -1,11 +1,11 @@
-# Sinyal Hari Ini - IDX Market Intelligence & Daily Brief Automation
+# Nadi Bursa - IDX Market Intelligence & Daily Brief Automation
 
 > **Track:** Market Intelligence (primary) + Automation Workflows (evidence)
 > **Hackathon:** Sectors Hackathon 2026
 
 ## What It Does
 
-Sinyal Hari Ini is an IDX market intelligence dashboard for Indonesian retail investors (age 20-45, using Ajaib/Stockbit) who face information overload. It translates raw Sectors API v2 data into derived insights:
+Nadi Bursa is an IDX market intelligence dashboard for Indonesian retail investors (age 20-45, using Ajaib/Stockbit) who face information overload. It translates raw Sectors API v2 data into derived insights:
 
 - **Health Scores (0-100)** - Dividend Health (5yr payout sustainability, free float, earnings trend), Value Quality, Liquidity per ticker
 - **Anomaly Radar** - Detects unusual price/volume moves vs sector baseline

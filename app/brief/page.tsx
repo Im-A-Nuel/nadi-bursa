@@ -1,35 +1,47 @@
 'use client';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import { getScreener, getIdxTotal, getForeignFlow, getBrokerSummary, type ScreenerItem, type ForeignFlow, type BrokerSummary, type IdxTotal } from '@/lib/sectors/client';
 import { generateBrief, formatBriefText, type DailyBrief } from '@/lib/briefGenerator';
 import { getWatchlist } from '@/lib/watchlist';
 import { MockDataBadge } from '@/components/common/MockDataBadge';
 import { SignalBadge } from '@/components/common/SignalBadge';
 import { ScoreRing } from '@/components/common/ScoreRing';
+import { TickerLogo } from '@/components/common/TickerLogo';
 import { useLang } from '@/components/layout/LanguageProvider';
 
 export default function BriefPage() {
   const [brief, setBrief] = useState<DailyBrief | null>(null);
   const [briefText, setBriefText] = useState('');
   const [copied, setCopied] = useState(false);
+  const [error, setError] = useState(false);
+  const [emptyWatchlist, setEmptyWatchlist] = useState(false);
   const { t } = useLang();
 
   useEffect(() => {
     (async () => {
-      const [tickers, idx] = await Promise.all([getScreener(), getIdxTotal()]);
-      const foreignData: Record<string, ForeignFlow | null> = {};
-      const brokerData: Record<string, BrokerSummary | null> = {};
-      await Promise.all(
-        tickers.map(async (tk) => {
-          const [f, b] = await Promise.all([getForeignFlow(tk.symbol), getBrokerSummary(tk.symbol)]);
-          foreignData[tk.symbol] = f;
-          brokerData[tk.symbol] = b;
-        })
-      );
-      const wl = getWatchlist();
-      const b = generateBrief(tickers, foreignData, brokerData, wl.length ? wl : tickers.slice(0, 3).map((tk) => tk.symbol), idx!);
-      setBrief(b);
-      setBriefText(formatBriefText(b));
+      try {
+        const [tickers, idx] = await Promise.all([getScreener(), getIdxTotal()]);
+        const wl = getWatchlist();
+        if (!wl.length) {
+          setEmptyWatchlist(true);
+          return;
+        }
+        const foreignData: Record<string, ForeignFlow | null> = {};
+        const brokerData: Record<string, BrokerSummary | null> = {};
+        await Promise.all(
+          tickers.map(async (tk) => {
+            const [f, b] = await Promise.all([getForeignFlow(tk.symbol), getBrokerSummary(tk.symbol)]);
+            foreignData[tk.symbol] = f;
+            brokerData[tk.symbol] = b;
+          })
+        );
+        const b = generateBrief(tickers, foreignData, brokerData, wl, idx!);
+        setBrief(b);
+        setBriefText(formatBriefText(b));
+      } catch {
+        setError(true);
+      }
     })();
   }, []);
 
@@ -40,6 +52,12 @@ export default function BriefPage() {
       setTimeout(() => setCopied(false), 1500);
     } catch {}
   };
+
+  if (error)
+    return <div className="desk p-8 text-center"><span className="led led-fail" /><p className="mt-3 text-sm text-white">{t('Brief data failed to load.', 'Data brief gagal dimuat.')}</p><button onClick={() => window.location.reload()} className="btn-line mt-4">{t('Try again', 'Coba lagi')}</button></div>;
+
+  if (emptyWatchlist)
+    return <div className="desk p-8 text-center"><span className="led led-warn" /><p className="mt-3 text-sm font-medium text-white">{t('Your watchlist is empty.', 'Watchlist Anda masih kosong.')}</p><p className="mt-1 text-sm text-[var(--muted)]">{t('Add a ticker first, then this brief will focus on your names.', 'Tambahkan ticker dulu, lalu brief ini akan fokus pada emiten pilihan Anda.')}</p><Link href="/screener" className="btn-primary mt-5">{t('Choose tickers', 'Pilih ticker')}</Link></div>;
 
   if (!brief)
     return (
@@ -53,22 +71,10 @@ export default function BriefPage() {
     <div className="animate-slide-up space-y-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">{t('Daily Brief', 'Rangkuman Harian')}</h1>
+          <h1 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-white">{t('Daily Brief', 'Rangkuman Harian')}</h1>
           <p className="mt-1 text-sm text-slate-400">{t('Automated 08:30 WIB morning briefing', 'Rangkuman pagi otomatis 08:30 WIB')}</p>
         </div>
         <MockDataBadge />
-      </div>
-
-      <div className="card-glass">
-        <div className="flex flex-wrap items-baseline gap-3">
-          <span className="text-sm font-semibold text-cyan-400">{brief.date}</span>
-          <span className="text-xs text-slate-500">{brief.timestamp}</span>
-        </div>
-        <div className="mt-3 flex flex-wrap items-baseline gap-3">
-          <span className="kicker">IHSG</span>
-          <span className="text-xl font-bold tabular-nums text-white">{brief.idxSummary.close.toLocaleString()}</span>
-          <span className={`text-sm font-semibold tabular-nums ${brief.idxSummary.changePercent >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>{brief.idxSummary.changePercent >= 0 ? '+' : ''}{brief.idxSummary.changePercent}%</span>
-        </div>
       </div>
 
       {brief.alerts.length > 0 && (
@@ -92,8 +98,9 @@ export default function BriefPage() {
           <h2 className="text-sm font-semibold text-white mb-3">{t('Your Watchlist', 'Watchlist Anda')}</h2>
           <div className="space-y-3">
             {brief.watchlistHighlights.map((h) => (
-              <div key={h.symbol} className="flex items-center gap-4 rounded-xl border border-white/5 bg-white/2 px-4 py-3">
-                <ScoreRing score={h.scores.overall} size={44} strokeWidth={3} />
+              <div key={h.symbol} className="flex items-center gap-3 rounded-xl border border-white/5 bg-white/2 px-4 py-3">
+                <TickerLogo symbol={h.symbol} size={36} />
+                <ScoreRing score={h.scores.overall} size={36} strokeWidth={3} />
                 <div className="flex-1 min-w-0">
                   <div className="text-sm font-semibold text-white">{h.symbol}</div>
                   <div className="text-xs text-slate-400 truncate">{h.signal.summary}</div>
@@ -109,8 +116,9 @@ export default function BriefPage() {
         <h2 className="text-sm font-semibold text-white mb-3">{t('Top Movers', 'Pergerakan Terbesar')}</h2>
         <div className="grid grid-cols-2 sm:grid-cols-5 gap-2">
           {brief.topMovers.map((m) => (
-            <div key={m.symbol} className="rounded-xl border border-white/5 bg-white/2 px-3 py-2.5 text-center">
-              <div className="text-sm font-semibold text-white">{m.symbol}</div>
+            <div key={m.symbol} className="rounded-xl border border-white/5 bg-white/2 px-3 py-2.5 flex flex-col items-center gap-1">
+              <TickerLogo symbol={m.symbol} size={28} />
+              <div className="text-xs font-semibold tracking-widest text-slate-200 uppercase">{m.symbol}</div>
               <div className={`text-sm font-bold tabular-nums ${m.changePercent >= 0 ? 'text-emerald-400' : 'text-red-400'}`}>{m.changePercent >= 0 ? '+' : ''}{m.changePercent}%</div>
             </div>
           ))}
@@ -124,7 +132,7 @@ export default function BriefPage() {
             {copied ? t('Copied', 'Tersalin') : t('Copy', 'Salin')}
           </button>
         </div>
-        <pre className="whitespace-pre-wrap rounded-xl border border-white/5 bg-[#0A0F1F] p-4 text-xs leading-relaxed font-mono text-slate-300 max-h-96 overflow-auto">{briefText}</pre>
+        <pre className="whitespace-pre-wrap rounded-xl border border-white/5 bg-[#070A12] p-4 text-xs leading-relaxed font-mono text-slate-300 max-h-96 overflow-auto">{briefText}</pre>
       </div>
     </div>
   );

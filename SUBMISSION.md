@@ -1,6 +1,6 @@
 # Submission - Sectors Hackathon 2026
 
-## Project: Sinyal Hari Ini - IDX Market Intelligence & Daily Brief Automation
+## Project: Nadi Bursa - IDX Market Intelligence & Daily Brief Automation
 - Repo: (make public, keep 90 days after winners 9 Oct 2026)
 - Track: Market Intelligence (primary) - qualifies via derived scores/rankings/anomaly (not raw display). Automation evidence via /scheduler cron log.
 - Tech: Next.js 14, Tailwind, Recharts, Sectors REST API v2 (9 endpoints), mock fallback

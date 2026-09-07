@@ -52,6 +52,29 @@ MOCK_TICKERS.forEach(t => {
 
 export const MOCK_IDX_TOTAL = { close: 7285.4, change: 32.5, changePercent: 0.45, volume: 18500000000, value: 12800000000000 };
 
+export const MOCK_IDX_HISTORY = [
+  { date: '2026-08-03', price: 7142.4 },
+  { date: '2026-08-04', price: 7188.2 },
+  { date: '2026-08-05', price: 7169.7 },
+  { date: '2026-08-06', price: 7210.5 },
+  { date: '2026-08-07', price: 7194.1 },
+  { date: '2026-08-10', price: 7238.6 },
+  { date: '2026-08-11', price: 7215.2 },
+  { date: '2026-08-12', price: 7254.8 },
+  { date: '2026-08-13', price: 7241.3 },
+  { date: '2026-08-14', price: 7268.9 },
+  { date: '2026-08-18', price: 7244.7 },
+  { date: '2026-08-19', price: 7291.6 },
+  { date: '2026-08-20', price: 7277.4 },
+  { date: '2026-08-21', price: 7310.2 },
+  { date: '2026-08-24', price: 7288.1 },
+  { date: '2026-08-25', price: 7304.5 },
+  { date: '2026-08-26', price: 7251.8 },
+  { date: '2026-08-27', price: 7246.3 },
+  { date: '2026-08-28', price: 7252.9 },
+  { date: '2026-08-29', price: 7285.4 },
+];
+
 export const MOCK_TOP_MOVERS = [
   { symbol: 'ADRO', name: 'Adaro Energy', sector: 'Energy', changePercent: 3.8, close: 2340, volume: 65200000 },
   { symbol: 'ASII', name: 'Astra International', sector: 'Industrials', changePercent: 2.1, close: 5120, volume: 22400000 },

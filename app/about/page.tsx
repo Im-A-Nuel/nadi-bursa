@@ -8,7 +8,7 @@ export default function AboutPage() {
     <div className="animate-slide-up max-w-3xl space-y-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">{t('About Sinyal Hari Ini', 'Tentang Sinyal Hari Ini')}</h1>
+          <h1 className="text-2xl sm:text-3xl font-display font-bold tracking-tight text-white">{t('About Nadi Bursa', 'Tentang Nadi Bursa')}</h1>
           <p className="mt-1 text-sm text-slate-400">{t('IDX Intelligence, built for Sectors Hackathon 2026', 'Inteligensi IDX, dibuat untuk Sectors Hackathon 2026')}</p>
         </div>
         <MockDataBadge />
@@ -27,7 +27,7 @@ export default function AboutPage() {
       <div className="card">
         <h2 className="text-sm font-semibold text-white mb-3">{t('Solution', 'Solusi')}</h2>
         <p className="text-sm leading-relaxed text-slate-300 mb-3">
-          {t('Sinyal Hari Ini turns raw IDX data into derived insights that you can act on:', 'Sinyal Hari Ini mengubah data mentah IDX menjadi wawasan turunan yang bisa ditindaklanjuti:')}
+          {t('Nadi Bursa turns raw IDX data into derived insights that you can act on:', 'Nadi Bursa mengubah data mentah IDX menjadi wawasan turunan yang bisa ditindaklanjuti:')}
         </p>
         <ul className="space-y-2 text-sm text-slate-300">
           {[
@@ -46,7 +46,7 @@ export default function AboutPage() {
 
       <div className="card">
         <h2 className="text-sm font-semibold text-white mb-3">{t('Architecture', 'Arsitektur')}</h2>
-        <div className="rounded-xl border border-white/5 bg-[#0A0F1F] p-4 font-mono text-xs leading-relaxed text-slate-300">
+        <div className="rounded-xl border border-white/5 bg-[#070A12] p-4 font-mono text-xs leading-relaxed text-slate-300">
           <div><span className="text-cyan-400">Next.js 14</span> App Router plus Tailwind plus Recharts</div>
           <div><span className="text-cyan-400">API:</span> Sectors REST v2 with transparent mock fallback</div>
           <div><span className="text-cyan-400">Signals:</span> foreign flow plus broker divergence fusion</div>
@@ -60,9 +60,9 @@ export default function AboutPage() {
         <h2 className="text-sm font-semibold text-white mb-3">{t('Track', 'Kategori')}</h2>
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
           {[
-            { name: 'Market Intelligence', desc: t('Primary: derived insights', 'Primer: wawasan turunan'), color: '#06B6D4' },
-            { name: 'Automation', desc: t('Scheduler plus cron evidence', 'Scheduler plus bukti cron'), color: '#8B5CF6' },
-            { name: 'Signals', desc: t('Classification engine', 'Mesin klasifikasi'), color: '#22C55E' },
+            { name: 'Market Intelligence', desc: t('Primary: derived insights', 'Primer: wawasan turunan'), color: '#22D3EE' },
+            { name: 'Automation', desc: t('Scheduler plus cron evidence', 'Scheduler plus bukti cron'), color: '#8FA3B8' },
+            { name: 'Signals', desc: t('Classification engine', 'Mesin klasifikasi'), color: '#00D68F' },
           ].map((track) => (
             <div key={track.name} className="rounded-xl border border-white/5 bg-white/2 p-3" style={{ borderLeftColor: track.color, borderLeftWidth: 2 }}>
               <div className="text-sm font-medium text-white">{track.name}</div>

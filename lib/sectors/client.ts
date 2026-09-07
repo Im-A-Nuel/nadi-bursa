@@ -3,12 +3,19 @@ import { ENDPOINTS, SECTORS_BASE } from './endpoints';
 import {
   MOCK_TICKERS, MOCK_DAILY, MOCK_FOREIGN_FLOW,
   MOCK_BROKER_SUMMARY, MOCK_IDX_TOTAL, MOCK_TOP_MOVERS,
+  MOCK_IDX_HISTORY,
 } from './mockData';
 
 const API_KEY = process.env.NEXT_PUBLIC_SECTORS_API_KEY || '';
 
+let apiFallbackActive = false;
+
 export function isMockMode(): boolean {
   return !API_KEY;
+}
+
+export function getUsingFallback(): boolean {
+  return apiFallbackActive;
 }
 
 async function fetchSectors<T>(endpoint: string, params: Record<string, string> = {}): Promise<T | null> {
@@ -20,9 +27,13 @@ async function fetchSectors<T>(endpoint: string, params: Record<string, string> 
       headers: { Authorization: `Bearer ${API_KEY}` },
       next: { revalidate: 300 },
     });
-    if (!res.ok) return null;
+    if (!res.ok) {
+      apiFallbackActive = true;
+      return null;
+    }
     return res.json();
   } catch {
+    apiFallbackActive = true;
     return null;
   }
 }
@@ -63,6 +74,13 @@ export type IdxTotal = { close: number; change: number; changePercent: number; v
 export async function getIdxTotal(): Promise<IdxTotal | null> {
   const live = await fetchSectors<IdxTotal>(ENDPOINTS.idxTotal);
   return live || MOCK_IDX_TOTAL;
+}
+
+export type IndexHistoryPoint = { date: string; price: number };
+
+export async function getIdxHistory(): Promise<IndexHistoryPoint[]> {
+  const live = await fetchSectors<IndexHistoryPoint[]>(ENDPOINTS.indexDaily);
+  return live?.length ? live : MOCK_IDX_HISTORY;
 }
 
 export type TopChangeItem = { symbol: string; name: string; sector: string; changePercent: number; close: number; volume: number };

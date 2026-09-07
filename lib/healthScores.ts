@@ -9,11 +9,11 @@ export type HealthScores = {
 };
 
 export function getHealthBand(score: number): { label: string; color: string } {
-  if (score >= 80) return { label: 'Excellent', color: '#10B981' };
-  if (score >= 60) return { label: 'Good', color: '#3B82F6' };
-  if (score >= 40) return { label: 'Fair', color: '#F59E0B' };
-  if (score >= 20) return { label: 'Weak', color: '#F97316' };
-  return { label: 'Poor', color: '#EF4444' };
+  if (score >= 80) return { label: 'Excellent', color: '#00D68F' };
+  if (score >= 60) return { label: 'Good', color: '#8FA3B8' };
+  if (score >= 40) return { label: 'Fair', color: '#E7B44A' };
+  if (score >= 20) return { label: 'Weak', color: '#FF8A96' };
+  return { label: 'Poor', color: '#FF4D5E' };
 }
 
 function clamp(v: number, min = 0, max = 100): number {

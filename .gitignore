@@ -6,3 +6,11 @@ node_modules/
 next-env.d.ts
 
 *.log
+
+# Local agent and planning material; not part of the public submission.
+.agents/
+.claude/
+.impeccable/
+PRODUCT.md
+PROGRESS.md
+skills-lock.json

@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { isMockMode } from '@/lib/sectors/client';
 import { TickerTape } from '@/components/common/TickerTape';
 import { ScrollReveal } from '@/components/common/ScrollReveal';
@@ -259,13 +260,17 @@ export default function LandingPage() {
 
       <ScrollReveal className="mx-auto max-w-6xl" delay={110}>
         <section className="pb-20 sm:pb-28">
-        <div className="relative overflow-hidden rounded-2xl border border-gold/30 bg-gradient-to-br from-gold/12 via-panel to-panel p-7 sm:p-12 text-center">
-          <div className="absolute inset-x-1/4 top-0 h-px bg-gradient-to-r from-transparent via-gold to-transparent" aria-hidden="true" />
-          <div className="field-label text-gold">BEFORE THE BELL</div>
-          <h2 className="mx-auto mt-4 max-w-2xl font-display text-3xl sm:text-5xl font-bold leading-tight tracking-[-0.04em] text-white">{t('Start with the signal, not the noise.', 'Mulai dari sinyal, bukan kebisingan.')}</h2>
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-relaxed text-[var(--muted)]">{t('Open the working desk, inspect a ticker, then make your own call. The app never places an order for you.', 'Buka meja kerja, periksa ticker, lalu buat keputusanmu sendiri. Aplikasi ini tidak pernah menempatkan order.')}</p>
-          <div className="mt-7 flex flex-wrap justify-center gap-3"><Link href="/dashboard" className="btn-primary">Buka Dasbor</Link><Link href="/screener" className="btn-line">Saring Emiten</Link></div>
-          <p className="mt-6 text-xs text-[var(--faint)]">Not financial advice. Information tool only.</p>
+        <div className="cta-pulse">
+          <div className="cta-pulse-copy">
+            <div className="field-label text-gold">BEFORE THE BELL</div>
+            <h2 className="mt-4 max-w-xl font-display text-3xl sm:text-5xl font-bold leading-tight tracking-[-0.04em] text-white">{t('Start with the signal, not the noise.', 'Mulai dari sinyal, bukan kebisingan.')}</h2>
+            <p className="mt-4 max-w-lg text-sm leading-relaxed text-[var(--muted)]">{t('Open the working desk, inspect a ticker, then make your own call. The app never places an order for you.', 'Buka meja kerja, periksa ticker, lalu buat keputusanmu sendiri. Aplikasi ini tidak pernah menempatkan order.')}</p>
+            <div className="mt-7 flex flex-wrap gap-3"><Link href="/dashboard" className="btn-primary">Buka Dasbor</Link><Link href="/screener" className="btn-line">Saring Emiten</Link></div>
+            <p className="mt-6 text-xs text-[var(--faint)]">Not financial advice. Information tool only.</p>
+          </div>
+          <div className="cta-pulse-art" aria-hidden="true">
+            <Image src="/assets/nadi-bursa-market-pulse.png" alt="" fill sizes="(max-width: 767px) 100vw, 48vw" className="object-cover object-right" />
+          </div>
         </div>
         </section>
       </ScrollReveal>

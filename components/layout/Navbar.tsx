@@ -6,8 +6,13 @@ import { useLang } from './LanguageProvider';
 
 function BrandMark() {
   return (
-    <span className="mono grid h-8 w-8 place-items-center rounded-[5px] bg-gold text-[10px] font-bold tracking-tight text-ink" aria-hidden="true">
-      NB
+    <span className="grid h-8 w-8 place-items-center" aria-hidden="true">
+      <svg viewBox="0 0 64 64" className="h-full w-full" fill="none">
+        <rect width="64" height="64" rx="16" fill="#E7B44A" />
+        <path d="M13 38.5C18 38.5 19.5 28 26 28s7 7 12 7 7.5-12 13-12" stroke="#05070D" strokeLinecap="round" strokeLinejoin="round" strokeWidth="5" />
+        <path d="M13 47h38" stroke="#05070D" strokeLinecap="round" strokeOpacity=".3" strokeWidth="2" />
+        <circle cx="51" cy="23" r="4" fill="#00D68F" stroke="#05070D" strokeWidth="2" />
+      </svg>
     </span>
   );
 }

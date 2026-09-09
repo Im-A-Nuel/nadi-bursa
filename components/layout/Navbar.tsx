@@ -22,12 +22,12 @@ function MenuIcon() {
 }
 
 const NAV_ITEMS = [
-  { href: '/', labelEn: 'Home', labelId: 'Beranda' },
-  { href: '/dashboard', labelEn: 'Dashboard', labelId: 'Dasbor' },
-  { href: '/screener', labelEn: 'Screener', labelId: 'Saringan' },
-  { href: '/radar', labelEn: 'Radar', labelId: 'Radar' },
-  { href: '/brief', labelEn: 'Brief', labelId: 'Brief' },
-  { href: '/scheduler', labelEn: 'Scheduler', labelId: 'Penjadwal' },
+  { href: '/', label: 'Home' },
+  { href: '/dashboard', label: 'Dashboard' },
+  { href: '/screener', label: 'Screener' },
+  { href: '/radar', label: 'Radar' },
+  { href: '/brief', label: 'Brief' },
+  { href: '/scheduler', label: 'Calendar' },
 ];
 
 export function Navbar() {
@@ -57,7 +57,7 @@ export function Navbar() {
                   aria-current={active ? 'page' : undefined}
                   className={`rounded-md px-3 py-2 text-[13px] font-medium transition-colors ${active ? 'bg-mint/10 text-mint' : 'text-[var(--muted)] hover:bg-white/[0.04] hover:text-white'}`}
                 >
-                  {t(item.labelEn, item.labelId)}
+                  {item.label}
                 </Link>
               );
             })}
@@ -80,7 +80,7 @@ export function Navbar() {
                     const active = pathname === item.href;
                     return (
                       <Link key={item.href} href={item.href} onClick={(e) => { const d = (e.currentTarget as HTMLElement).closest('details'); if (d) d.removeAttribute('open'); }} className={`block rounded px-3 py-2.5 text-sm transition-colors ${active ? 'bg-mint/10 text-mint' : 'text-[var(--muted)] hover:bg-white/[0.04] hover:text-white'}`}>
-                        {t(item.labelEn, item.labelId)}
+                        {item.label}
                       </Link>
                     );
                   })}

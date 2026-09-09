@@ -17,9 +17,6 @@ export function ScoreRing({ score, size = 56, strokeWidth = 4 }: { score: number
     const y1 = cy - r * Math.sin(a0);
     return `M ${x0} ${y0} A ${r} ${r} 0 0 1 ${x1} ${y1}`;
   };
-  const needleAngle = Math.PI - (score / 100) * Math.PI;
-  const nx = cx + (r - 4) * Math.cos(needleAngle);
-  const ny = cy - (r - 4) * Math.sin(needleAngle);
 
   return (
     <svg
@@ -32,10 +29,7 @@ export function ScoreRing({ score, size = 56, strokeWidth = 4 }: { score: number
       <path d={arc(0, 35)} stroke="rgba(255,77,94,0.55)" strokeWidth={strokeWidth} fill="none" strokeLinecap="round" />
       <path d={arc(35, 65)} stroke="rgba(231,180,74,0.45)" strokeWidth={strokeWidth} fill="none" />
       <path d={arc(65, 100)} stroke="rgba(0,214,143,0.5)" strokeWidth={strokeWidth} fill="none" strokeLinecap="round" />
-      <line x1={cx} y1={cy} x2={nx} y2={ny} stroke={band.color} strokeWidth={Math.max(2, strokeWidth * 0.55)} strokeLinecap="round"
-        style={{ transition: 'all 700ms cubic-bezier(0.16,1,0.3,1)' }} />
-      <circle cx={cx} cy={cy} r={Math.max(2.5, strokeWidth * 0.65)} fill={band.color} />
-      <text x={cx} y={cy + Math.max(5, size * 0.1)} textAnchor="middle" fill={band.color} fontFamily="var(--font-plex-mono), monospace" fontWeight="700" fontSize={Math.max(11, size * 0.22)}>{score}</text>
+      <text x={cx} y={size - 4} textAnchor="middle" fill={band.color} fontFamily="var(--font-plex-mono), monospace" fontWeight="700" fontSize={Math.max(11, size * 0.22)}>{score}</text>
     </svg>
   );
 }

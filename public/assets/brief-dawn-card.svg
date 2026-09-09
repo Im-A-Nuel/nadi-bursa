@@ -1,0 +1,21 @@
+<svg width="600" height="300" viewBox="0 0 600 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="dawn" x1="81" y1="230" x2="505" y2="44" gradientUnits="userSpaceOnUse"><stop stop-color="#0E2830"/><stop offset="1" stop-color="#16231F"/></linearGradient></defs>
+  <rect width="600" height="300" fill="#0D161B"/><text x="42" y="39" fill="#8290A8" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.5">PRE-OPEN BRIEF</text>
+  <text x="459" y="39" fill="#E7B44A" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1">08:30 WIB</text>
+  <path d="M42 56H558" stroke="#263242"/>
+  <path d="M75 232C133 196 178 211 221 169C259 132 307 142 349 105C391 69 443 94 521 47V255H75V232Z" fill="url(#dawn)"/>
+  <path d="M75 232C133 196 178 211 221 169C259 132 307 142 349 105C391 69 443 94 521 47" stroke="#00D68F" stroke-width="2"/>
+  <rect x="78" y="83" width="188" height="139" rx="10" fill="#121C24" stroke="#2A554D"/>
+  <text x="99" y="109" fill="#E8ECF4" font-family="IBM Plex Mono, monospace" font-size="10" font-weight="600">TODAY'S READ</text>
+  <path d="M99 124H241" stroke="#2A3848"/>
+  <circle cx="105" cy="145" r="4" fill="#00D68F"/><text x="119" y="149" fill="#B8C4D6" font-family="IBM Plex Mono, monospace" font-size="9">ACCUMULATION</text>
+  <circle cx="105" cy="171" r="4" fill="#E7B44A"/><text x="119" y="175" fill="#B8C4D6" font-family="IBM Plex Mono, monospace" font-size="9">WATCH ENERGY</text>
+  <circle cx="105" cy="197" r="4" fill="#FF4D5E"/><text x="119" y="201" fill="#B8C4D6" font-family="IBM Plex Mono, monospace" font-size="9">2 OUTLIERS</text>
+  <circle cx="449" cy="139" r="56" fill="#101B1D" stroke="#315B50"/><circle cx="449" cy="139" r="45" stroke="#E7B44A" stroke-opacity=".65" stroke-width="2" stroke-dasharray="105 178" stroke-linecap="round" transform="rotate(-128 449 139)"/>
+  <path d="M449 139L472 116" stroke="#00D68F" stroke-width="2" stroke-linecap="round"/><circle cx="449" cy="139" r="4" fill="#00D68F"/>
+  <text x="418" y="146" fill="#E8ECF4" font-family="IBM Plex Mono, monospace" font-size="19" font-weight="600">08:30</text>
+  <text x="424" y="164" fill="#8290A8" font-family="IBM Plex Mono, monospace" font-size="8" letter-spacing="1">OPEN BELL</text>
+  <rect x="347" y="218" width="203" height="31" rx="6" fill="#14201F" stroke="#2B5248"/>
+  <circle cx="365" cy="234" r="4" fill="#00D68F"/><text x="378" y="238" fill="#A8D8C5" font-family="IBM Plex Mono, monospace" font-size="9">WATCHLIST READY</text>
+  <path d="M42 266H558" stroke="#263242"/><text x="42" y="287" fill="#8290A8" font-family="IBM Plex Mono, monospace" font-size="9">CALM READ BEFORE THE MARKET OPENS</text>
+</svg>

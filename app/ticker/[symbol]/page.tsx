@@ -53,10 +53,12 @@ export default function TickerPage() {
     <div className="animate-slide-up space-y-5">
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div className="flex flex-1 flex-wrap items-center gap-3">
-          <Link href="/screener" className="group order-first inline-flex min-h-9 basis-full items-center gap-2 rounded-md border border-rule px-3 text-xs font-medium text-[var(--muted)] transition-colors hover:border-[rgba(231,180,74,0.55)] hover:bg-gold/[0.06] hover:text-gold">
-            <svg className="transition-transform group-hover:-translate-x-0.5" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" /></svg>
-            {t('Back to screener', 'Kembali ke Screener')}
-          </Link>
+          <div className="order-first basis-full">
+            <Link href="/screener" className="group inline-flex min-h-9 items-center gap-2 rounded-md border border-rule px-3 text-xs font-medium text-[var(--muted)] transition-colors hover:border-[rgba(231,180,74,0.55)] hover:bg-gold/[0.06] hover:text-gold">
+              <svg className="transition-transform group-hover:-translate-x-0.5" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" aria-hidden="true"><path d="M15 18l-6-6 6-6" strokeLinecap="round" strokeLinejoin="round" /></svg>
+              {t('Back to screener', 'Kembali ke Screener')}
+            </Link>
+          </div>
           <TickerLogo symbol={ticker.symbol} name={ticker.name} sector={ticker.sector} size={48} />
           <div>
             <div className="flex flex-wrap items-center gap-2">

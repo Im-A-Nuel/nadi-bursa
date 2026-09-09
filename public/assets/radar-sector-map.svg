@@ -1,0 +1,29 @@
+<svg width="600" height="300" viewBox="0 0 600 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(303 151) rotate(90) scale(122)"><stop stop-color="#00D68F" stop-opacity=".2"/><stop offset="1" stop-color="#00D68F" stop-opacity="0"/></radialGradient>
+    <linearGradient id="beam" x1="303" y1="151" x2="510" y2="39" gradientUnits="userSpaceOnUse"><stop stop-color="#00D68F" stop-opacity=".24"/><stop offset="1" stop-color="#00D68F" stop-opacity="0"/></linearGradient>
+  </defs>
+  <rect width="600" height="300" fill="#10141B"/>
+  <text x="42" y="39" fill="#8290A8" font-family="IBM Plex Mono, monospace" font-size="10" letter-spacing="1.5">SECTOR ANOMALY MAP</text>
+  <text x="446" y="39" fill="#00D68F" font-family="IBM Plex Mono, monospace" font-size="9" letter-spacing="1">LIVE SCAN</text>
+  <circle cx="303" cy="151" r="122" fill="url(#glow)"/>
+  <circle cx="303" cy="151" r="108" stroke="#273447" stroke-dasharray="4 8"/>
+  <circle cx="303" cy="151" r="72" stroke="#273447"/>
+  <circle cx="303" cy="151" r="36" stroke="#2E4B4B"/>
+  <path d="M303 151L507 40A233 233 0 0 1 539 138Z" fill="url(#beam)"/>
+  <path d="M303 151L507 40" stroke="#00D68F" stroke-opacity=".58"/>
+  <path d="M303 151H515M303 151V258" stroke="#263242" stroke-dasharray="3 7"/>
+  <circle cx="303" cy="151" r="7" fill="#00D68F"/><circle cx="303" cy="151" r="14" stroke="#00D68F" stroke-opacity=".35"/>
+  <circle cx="433" cy="92" r="8" fill="#FF4D5E"/><circle cx="433" cy="92" r="16" stroke="#FF4D5E" stroke-opacity=".28"/>
+  <path d="M427 86L439 98M439 86L427 98" stroke="#10141B" stroke-width="2"/>
+  <circle cx="216" cy="93" r="6" fill="#E7B44A"/><circle cx="216" cy="93" r="12" stroke="#E7B44A" stroke-opacity=".22"/>
+  <circle cx="169" cy="198" r="5" fill="#00D68F"/><circle cx="411" cy="218" r="5" fill="#00D68F"/>
+  <path d="M433 92L474 69" stroke="#FF4D5E" stroke-opacity=".7"/>
+  <rect x="474" y="51" width="82" height="35" rx="6" fill="#171D28" stroke="#6B3340"/>
+  <text x="485" y="66" fill="#FF8A96" font-family="IBM Plex Mono, monospace" font-size="9">ADRO</text><text x="485" y="78" fill="#8B97AC" font-family="IBM Plex Mono, monospace" font-size="8">VOLUME x2.8</text>
+  <text x="196" y="78" fill="#DAB65F" font-family="IBM Plex Mono, monospace" font-size="9">BANKS</text><text x="145" y="218" fill="#82DABA" font-family="IBM Plex Mono, monospace" font-size="9">ENERGY</text><text x="421" y="237" fill="#82DABA" font-family="IBM Plex Mono, monospace" font-size="9">TELCO</text>
+  <path d="M42 266H558" stroke="#263242"/>
+  <circle cx="45" cy="283" r="3" fill="#FF4D5E"/><text x="56" y="287" fill="#8290A8" font-family="IBM Plex Mono, monospace" font-size="9">OUTLIER</text>
+  <circle cx="140" cy="283" r="3" fill="#E7B44A"/><text x="151" y="287" fill="#8290A8" font-family="IBM Plex Mono, monospace" font-size="9">WATCH</text>
+  <circle cx="227" cy="283" r="3" fill="#00D68F"/><text x="238" y="287" fill="#8290A8" font-family="IBM Plex Mono, monospace" font-size="9">IN RANGE</text>
+</svg>

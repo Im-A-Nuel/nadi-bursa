@@ -104,33 +104,8 @@ function SignalCard({ href, eyebrow, title, body, kind }: SignalCardProps) {
             <text x="472" y="248" fill="#00D68F" fontSize="10" fontFamily="IBM Plex Mono" fontWeight="600">ACCUMULATION</text>
           </svg>
         )}
-        {kind === 'radar' && (
-          <svg viewBox="0 0 600 300" fill="none" aria-hidden="true">
-            <text x="44" y="42" fill="#7B879E" fontSize="10" fontFamily="IBM Plex Mono" letterSpacing="1.2">ANOMALY RADAR / SECTOR RELATIVE</text>
-            <path d="M44 64H556" stroke="#263242" />
-            <text x="44" y="90" fill="#7B879E" fontSize="9" fontFamily="IBM Plex Mono">SEVERITY</text><text x="150" y="90" fill="#7B879E" fontSize="9" fontFamily="IBM Plex Mono">TICKER</text><text x="240" y="90" fill="#7B879E" fontSize="9" fontFamily="IBM Plex Mono">READING</text><text x="492" y="90" fill="#7B879E" fontSize="9" fontFamily="IBM Plex Mono">DEVIATION</text>
-            <path d="M44 105H556M44 155H556M44 205H556M44 255H556" stroke="#263242" />
-            <circle cx="59" cy="130" r="4" fill="#FF4D5E" /><text x="74" y="134" fill="#FF8A96" fontSize="10" fontFamily="IBM Plex Mono">HIGH</text>
-            <text x="150" y="134" fill="#E8ECF4" fontSize="11" fontFamily="IBM Plex Mono" fontWeight="600">ADRO</text><text x="240" y="134" fill="#E8ECF4" fontSize="10" fontFamily="IBM Plex Mono">VOLUME SPIKE</text><text x="492" y="134" fill="#FF8A96" fontSize="10" fontFamily="IBM Plex Mono">x2.8</text>
-            <circle cx="59" cy="180" r="4" fill="#FF4D5E" /><text x="74" y="184" fill="#FF8A96" fontSize="10" fontFamily="IBM Plex Mono">HIGH</text>
-            <text x="150" y="184" fill="#E8ECF4" fontSize="11" fontFamily="IBM Plex Mono" fontWeight="600">GOTO</text><text x="240" y="184" fill="#E8ECF4" fontSize="10" fontFamily="IBM Plex Mono">PRICE DIVERGE</text><text x="492" y="184" fill="#FF8A96" fontSize="10" fontFamily="IBM Plex Mono">-4.2%</text>
-            <circle cx="59" cy="230" r="4" fill="#E7B44A" /><text x="74" y="234" fill="#E7B44A" fontSize="10" fontFamily="IBM Plex Mono">MED</text>
-            <text x="150" y="234" fill="#E8ECF4" fontSize="11" fontFamily="IBM Plex Mono" fontWeight="600">BBRI</text><text x="240" y="234" fill="#E8ECF4" fontSize="10" fontFamily="IBM Plex Mono">FLOW DRIFT</text><text x="492" y="234" fill="#E7B44A" fontSize="10" fontFamily="IBM Plex Mono">3d</text>
-          </svg>
-        )}
-        {kind === 'brief' && (
-          <svg viewBox="0 0 600 300" fill="none" aria-hidden="true">
-            <text x="44" y="42" fill="#7B879E" fontSize="10" fontFamily="IBM Plex Mono" letterSpacing="1.2">WATCHLIST / PRE-OPEN BRIEF</text>
-            <rect x="44" y="66" width="512" height="178" rx="6" fill="#111922" stroke="#2A554D" />
-            <path d="M44 108H556" stroke="#263242" />
-            <text x="68" y="94" fill="#E7B44A" fontSize="11" fontFamily="IBM Plex Mono" fontWeight="600">08:30 WIB</text>
-            <text x="472" y="94" fill="#7B879E" fontSize="10" fontFamily="IBM Plex Mono">MON-FRI</text>
-            <text x="70" y="133" fill="#E8ECF4" fontSize="11" fontFamily="IBM Plex Mono" fontWeight="600">WATCHLIST SIGNALS</text>
-            <text x="70" y="160" fill="#7B879E" fontSize="10" fontFamily="IBM Plex Mono">BBCA</text><path d="M130 157H342" stroke="#263242" strokeWidth="4" strokeLinecap="round" /><path d="M130 157H288" stroke="#00D68F" strokeWidth="4" strokeLinecap="round" /><text x="382" y="160" fill="#00D68F" fontSize="10" fontFamily="IBM Plex Mono">HEALTHY</text>
-            <text x="70" y="190" fill="#7B879E" fontSize="10" fontFamily="IBM Plex Mono">ADRO</text><path d="M130 187H342" stroke="#263242" strokeWidth="4" strokeLinecap="round" /><path d="M130 187H256" stroke="#E7B44A" strokeWidth="4" strokeLinecap="round" /><text x="382" y="190" fill="#E7B44A" fontSize="10" fontFamily="IBM Plex Mono">WATCH</text>
-            <text x="70" y="220" fill="#7B879E" fontSize="10" fontFamily="IBM Plex Mono">GOTO</text><path d="M130 217H342" stroke="#263242" strokeWidth="4" strokeLinecap="round" /><path d="M130 217H205" stroke="#FF4D5E" strokeWidth="4" strokeLinecap="round" /><text x="382" y="220" fill="#FF8A96" fontSize="10" fontFamily="IBM Plex Mono">ANOMALY</text>
-          </svg>
-        )}
+        {kind === 'radar' && <Image src="/assets/radar-sector-map.svg" alt="Peta radar anomali lintas sektor" width={600} height={300} className="h-full w-full object-cover" />}
+        {kind === 'brief' && <Image src="/assets/brief-dawn-card.svg" alt="Ilustrasi briefing sebelum pembukaan pasar" width={600} height={300} className="h-full w-full object-cover" />}
       </div>
       <div className="signal-card-copy">
         <div className="mono text-[10px] tracking-[0.12em] text-[var(--faint)]">{eyebrow}</div>

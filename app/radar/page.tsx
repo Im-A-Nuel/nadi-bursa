@@ -43,6 +43,29 @@ export default function RadarPage() {
         <MockDataBadge />
       </div>
 
+      {!loading && !error && (
+        <section className="radar-command" aria-label={t('Radar scan summary', 'Ringkasan pemindaian radar')}>
+          <div className="radar-command-copy">
+            <div className="field-label">{t('Sector-relative scan', 'Pemindaian relatif sektor')}</div>
+            <h2>{anomalies.length ? t('See what needs attention.', 'Lihat yang perlu perhatian.') : t('Baseline is holding.', 'Baseline masih terjaga.')}</h2>
+            <p>{t('Each marker is compared against its sector baseline before it enters the review queue.', 'Setiap penanda dibandingkan dengan baseline sektornya sebelum masuk antrean tinjauan.')}</p>
+          </div>
+          <dl className="radar-command-stats">
+            <div><dt>{t('High', 'Tinggi')}</dt><dd className="text-coral">{high.length}</dd></div>
+            <div><dt>{t('Watch', 'Pantau')}</dt><dd className="text-gold">{med.length}</dd></div>
+            <div><dt>{t('In range', 'Dalam rentang')}</dt><dd className="text-mint">{Math.max(tickers.length - anomalies.length, 0)}</dd></div>
+          </dl>
+          <svg className="radar-command-scope" viewBox="0 0 180 120" fill="none" aria-hidden="true">
+            <circle cx="88" cy="60" r="46" stroke="currentColor" strokeOpacity=".18" strokeDasharray="3 6" />
+            <circle cx="88" cy="60" r="30" stroke="currentColor" strokeOpacity=".22" />
+            <path d="M88 60L139 26A62 62 0 0 1 148 76Z" fill="currentColor" fillOpacity=".08" />
+            <path d="M88 60L139 26" stroke="currentColor" strokeOpacity=".55" />
+            <circle cx="88" cy="60" r="4" fill="#00D68F" />
+            <circle cx="122" cy="39" r="5" fill="#FF4D5E" /><circle cx="53" cy="78" r="4" fill="#E7B44A" /><circle cx="130" cy="84" r="3" fill="#00D68F" />
+          </svg>
+        </section>
+      )}
+
       {loading && <div className="desk p-8 text-center"><span className="led led-live animate-soft-pulse" /><p className="mono mt-3 text-xs text-[var(--muted)]">{t('Scanning sector baselines...', 'Memindai baseline sektor...')}</p></div>}
       {error && <div className="desk p-8 text-center"><span className="led led-fail" /><p className="mt-3 text-sm text-white">{t('Radar data failed to load.', 'Data radar gagal dimuat.')}</p><button onClick={load} className="btn-line mt-4">{t('Try again', 'Coba lagi')}</button></div>}
 

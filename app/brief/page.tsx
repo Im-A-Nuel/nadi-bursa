@@ -77,6 +77,23 @@ export default function BriefPage() {
         <MockDataBadge />
       </div>
 
+      <section className="brief-command" aria-label={t('Pre-open market readout', 'Ringkasan pasar pra-pembukaan')}>
+        <div className="brief-command-copy">
+          <div className="field-label">{t('Before the bell', 'Sebelum bel pembukaan')}</div>
+          <h2>{t('Your calm read for the open.', 'Bacaan tenang sebelum pasar buka.')}</h2>
+          <p>{brief.date} · {brief.timestamp} · {brief.alerts.length ? t(`${brief.alerts.length} items need context`, `${brief.alerts.length} hal perlu konteks`) : t('No urgent items from your watchlist', 'Tidak ada hal mendesak dari watchlist Anda')}</p>
+        </div>
+        <div className="brief-command-market">
+          <span>{t('IHSG snapshot', 'Snapshot IHSG')}</span>
+          <strong>{brief.idxSummary.close.toLocaleString()}</strong>
+          <b className={brief.idxSummary.changePercent >= 0 ? 'text-mint' : 'text-coral'}>{brief.idxSummary.changePercent >= 0 ? '+' : ''}{brief.idxSummary.changePercent}%</b>
+        </div>
+        <div className="brief-command-clock" aria-hidden="true">
+          <span>08</span><i /> <span>30</span>
+          <small>WIB</small>
+        </div>
+      </section>
+
       {brief.alerts.length > 0 && (
         <div className="card border-amber-500/15">
           <h2 className="text-sm font-semibold text-amber-400 mb-3">{t('Alerts', 'Peringatan')}</h2>

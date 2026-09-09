@@ -30,9 +30,9 @@ function MarketArtwork() {
             <stop offset="1" stopColor="#00D68F" stopOpacity="0" />
           </linearGradient>
         </defs>
-        <path d="M0 294 C48 288 52 246 96 256 S132 292 164 270 S215 218 247 244 S287 224 320 252 S355 282 382 236 S421 154 451 190 S486 236 515 192 S553 122 584 151 S620 196 650 146 S706 106 800 42 L800 350 L0 350Z" fill="url(#chartFill)" />
-        <path d="M0 294 C48 288 52 246 96 256 S132 292 164 270 S215 218 247 244 S287 224 320 252 S355 282 382 236 S421 154 451 190 S486 236 515 192 S553 122 584 151 S620 196 650 146 S706 106 800 42" stroke="url(#chartLine)" strokeWidth="3" strokeLinecap="round" />
-        <path d="M0 318 C80 308 140 305 215 289 S360 304 430 278 S570 260 650 218 S744 214 800 196" stroke="#405166" strokeWidth="1" strokeDasharray="5 8" opacity="0.8" />
+        <path className="hero-chart-area" d="M0 294 C48 288 52 246 96 256 S132 292 164 270 S215 218 247 244 S287 224 320 252 S355 282 382 236 S421 154 451 190 S486 236 515 192 S553 122 584 151 S620 196 650 146 S706 106 800 42 L800 350 L0 350Z" fill="url(#chartFill)" />
+        <path className="hero-chart-line" d="M0 294 C48 288 52 246 96 256 S132 292 164 270 S215 218 247 244 S287 224 320 252 S355 282 382 236 S421 154 451 190 S486 236 515 192 S553 122 584 151 S620 196 650 146 S706 106 800 42" stroke="url(#chartLine)" strokeWidth="3" strokeLinecap="round" />
+        <path className="hero-chart-baseline" d="M0 318 C80 308 140 305 215 289 S360 304 430 278 S570 260 650 218 S744 214 800 196" stroke="#405166" strokeWidth="1" strokeDasharray="5 8" opacity="0.8" />
         <line x1="584" y1="54" x2="584" y2="330" stroke="#00D68F" strokeOpacity="0.25" strokeDasharray="4 8" />
         <circle cx="584" cy="151" r="6" fill="#00D68F" />
         <circle cx="584" cy="151" r="15" stroke="#00D68F" strokeOpacity="0.35" />
@@ -173,10 +173,6 @@ export default function LandingPage() {
 
         <div className="landing-hero-art">
           <MarketArtwork />
-          <div className="hero-art-note mono" aria-hidden="true">
-            <span>MARKET PULSE</span>
-            <span>ONE READ / 08:30</span>
-          </div>
         </div>
 
         <div className="landing-hero-status flex flex-wrap gap-x-6 gap-y-2 text-xs text-[var(--faint)]">

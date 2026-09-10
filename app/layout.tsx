@@ -30,7 +30,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id">
+    <html lang="en">
       <body className={`${archivo.variable} ${plexSans.variable} ${plexMono.variable}`}>
         <LanguageProvider>
           <div className="min-h-screen flex flex-col">

@@ -4,7 +4,7 @@
 - Repo: (make public, keep 90 days after winners 9 Oct 2026)
 - Track: Market Intelligence (primary) - qualifies via derived scores/rankings/anomaly (not raw display). Automation evidence via /scheduler cron log.
 - Tech: Next.js 14, Tailwind, Recharts, Sectors REST API v2 (9 endpoints), mock fallback
-- Run: npm install && npm run dev (port 3000). No hosting needed. Env: NEXT_PUBLIC_SECTORS_API_KEY (optional, falls back to mock for offline judging)
+- Run: npm install && npm run dev (port 3000). No hosting needed. Env: SECTORS_API_KEY (optional, falls back to labelled demo data for offline judging)
 
 ## Submission Requirements Checklist
 - [x] Public repo (this project) - README, LICENSE, .gitignore, JUDGING.md, PROBLEM_STATEMENT.md, video-script-outline.md

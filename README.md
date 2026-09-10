@@ -21,7 +21,7 @@ npm install
 
 # 2. (Optional) Add your Sectors API key
 cp .env.example .env.local
-# Edit .env.local and add: NEXT_PUBLIC_SECTORS_API_KEY=your_key_here
+# Edit .env.local and add: SECTORS_API_KEY=your_key_here
 
 # 3. Run the dev server
 npm run dev
